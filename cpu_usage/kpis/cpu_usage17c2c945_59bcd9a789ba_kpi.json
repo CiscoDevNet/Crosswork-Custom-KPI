@@ -1,0 +1,51 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "cpu_usage17c2c945_59bcd9a789ba",
+        "kpi_name": "cpu usage",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "cpu usage",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-wdsysmon-fd-oper:system-monitoring/cpu-utilization/total-cpu-fifteen-minute"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "cpu_usage17c2c945_59bcd9a789ba_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "cpu_usage17c2c945_59bcd9a789ba_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-wdsysmon-fd-oper:2015-08-15"
+      }
+    ]
+  }
+}
