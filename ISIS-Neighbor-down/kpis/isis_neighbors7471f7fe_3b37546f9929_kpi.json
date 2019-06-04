@@ -1,0 +1,57 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "isis_neighbors7471f7fe_3b37546f9929",
+        "kpi_name": "isis-neighbors",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "isis-neighbors",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-clns-isis-oper:isis/instances/instance/neighbor-summaries/neighbor-summary/level1-neighbors/neighbor-down-count"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-clns-isis-oper:isis/instances/instance/neighbor-summaries/neighbor-summary/level12-neigbors/neighbor-down-count"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-clns-isis-oper:isis/instances/instance/neighbor-summaries/neighbor-summary/level2-neighbors/neighbor-down-count"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "isis_neighbors7471f7fe_3b37546f9929_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "isis_neighbors7471f7fe_3b37546f9929_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-clns-isis-oper:2015-11-09"
+      }
+    ]
+  }
+}

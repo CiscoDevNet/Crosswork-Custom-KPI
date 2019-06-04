@@ -1,0 +1,52 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "dhcp_IpAddress_Allocated34667ae7_723821f2986b",
+        "kpi_name": "dhcp-IpAddress Allocated",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "dhcp-ipAddress Allocated-Free",
+        "details": "pool-allocations/FREE",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-ip-daps-oper:address-pool-service/nodes/node/pools/pool/allocated-addresses/pool-allocations/free"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "dhcp_IpAddress_Allocated34667ae7_723821f2986b_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "dhcp_IpAddress_Allocated34667ae7_723821f2986b_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-ip-daps-oper:2015-11-09"
+      }
+    ]
+  }
+}

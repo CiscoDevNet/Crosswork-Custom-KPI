@@ -1,0 +1,356 @@
+{
+  "__inputs": [
+    {
+      "description": "",
+      "label": "robot_alertdb",
+      "name": "DS_ROBOT_ALERTDB",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB",
+      "type": "datasource"
+    }
+  ],
+  "__requires": [
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "type": "grafana",
+      "version": "4.2.0"
+    },
+    {
+      "id": "graph",
+      "name": "Graph",
+      "type": "panel",
+      "version": ""
+    },
+    {
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "type": "datasource",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "enable": true,
+    "list": [
+      {
+        "datasource": "robot_alertdb",
+        "enable": true,
+        "iconColor": "rgb(253, 7, 7)",
+        "limit": 100,
+        "name": "CRITICAL",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE Producer =~ /^$Router$/ AND id =~ /dhcp_ServerBindings14d84a5b_dcefd845aa96/ AND level = 'CRITICAL'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      },
+      {
+        "datasource": "robot_alertdb",
+        "enable": true,
+        "iconColor": "rgb(237, 149, 3)",
+        "limit": 100,
+        "name": "WARNING",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE Producer =~ /^$Router$/ AND id =~ /dhcp_ServerBindings14d84a5b_dcefd845aa96/ AND level = 'WARNING'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      },
+      {
+        "datasource": "robot_alertdb",
+        "enable": false,
+        "iconColor": "rgb(34, 191, 13)",
+        "limit": 100,
+        "name": "INFO",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE Producer =~ /^$Router$/ AND id =~ /dhcp_ServerBindings14d84a5b_dcefd845aa96/ AND level = 'INFO'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": "350",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "robot_alertdb",
+          "decimals": 2,
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "repeat": null,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col on [[tag_nodeid]]",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "policy": "default",
+              "query": "SELECT /^$KpiFields$/ FROM $RP.\"Cisco-IOS-XR-ipv4-dhcpd-oper:ipv4-dhcpd/nodes/node/server/binding/summary\" WHERE  \"Producer\" =~ /^$Router$/  AND \"nodeid\" =~ /^$nodeid$/ AND $timeFilter GROUP BY *",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "$Router: $col on [[tag_nodeid]]",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "hide": true,
+              "measurement": "Cisco-IOS-XR-ipv4-dhcpd-oper:ipv4-dhcpd/nodes/node/server/binding/summary",
+              "policy": "rp1h_1",
+              "query": "SELECT derivative(/^$KpiFields$/, 1m) FROM $RP.\"Cisco-IOS-XR-ipv4-dhcpd-oper:ipv4-dhcpd/nodes/node/server/binding/summary\" WHERE \"Producer\" =~ /^$Router$/  AND \"nodeid\" =~ /^$nodeid$/ AND $timeFilter GROUP BY *",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "5m"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$Router - $KpiFields ",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "Router",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "Router",
+        "options": [],
+        "query": "Show Tag Values from $RP.\"Cisco-IOS-XR-ipv4-dhcpd-oper:ipv4-dhcpd/nodes/node/server/binding/summary\" WITH Key = \"Producer\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "nodeid",
+        "options": [],
+        "query": "SHOW TAG VALUES  FROM $RP.\"Cisco-IOS-XR-ipv4-dhcpd-oper:ipv4-dhcpd/nodes/node/server/binding/summary\" WITH KEY= \"nodeid\"  where Producer =~ /^$Router$/",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": true,
+        "label": "Sensor",
+        "multi": true,
+        "name": "KpiFields",
+        "options": [],
+        "query": "SHOW FIELD KEYS  FROM \"Cisco-IOS-XR-ipv4-dhcpd-oper:ipv4-dhcpd/nodes/node/server/binding/summary\"",
+        "refresh": 1,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "rp1h_1",
+          "value": "rp1h_1"
+        },
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Retention",
+        "multi": false,
+        "name": "RP",
+        "options": [],
+        "query": "show retention policies",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-1h",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "utc",
+  "title": "dhcp_ServerBindings14d84a5b_dcefd845aa96",
+  "version": 10
+}

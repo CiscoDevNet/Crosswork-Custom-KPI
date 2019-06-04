@@ -1,0 +1,52 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "isis_int_count_l2b149bd1d_cffc00c7c6ed",
+        "kpi_name": "isis-int-count-l2",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "isis-int-count-l2",
+        "details": "isis-int-count-l2",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-clns-isis-oper:isis/instances/instance/neighbor-summaries/neighbor-summary/level2-neighbors/neighbor-init-count"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "isis_int_count_l2b149bd1d_cffc00c7c6ed_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "isis_int_count_l2b149bd1d_cffc00c7c6ed_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-clns-isis-oper:2015-11-09"
+      }
+    ]
+  }
+}

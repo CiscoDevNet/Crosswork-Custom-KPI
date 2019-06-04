@@ -1,0 +1,52 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "udp_dropped_packets4b2d15b8_13f4641bb2a0",
+        "kpi_name": "udp-dropped-packets",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "udp-dropped-packets",
+        "details": "udp-dropped-packets",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-ip-udp-oper:udp/nodes/node/statistics/ipv6-traffic/udp-dropped-packets"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "udp_dropped_packets4b2d15b8_13f4641bb2a0_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "udp_dropped_packets4b2d15b8_13f4641bb2a0_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-ip-udp-oper:2015-11-09"
+      }
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "QoS_Policy_Map_general_stats6152d2ac_4dd68df70353",
+        "kpi_name": "QoS-Policy-Map-general-stats",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "QoS-Policy-Map-general-stats",
+        "details": "QoS-Policy-Map-general-stats",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/match-data-rate"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/pre-policy-matched-bytes"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/pre-policy-matched-packets"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/total-drop-bytes"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/total-drop-packets"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/total-drop-rate"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/total-transmit-rate"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/transmit-bytes"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-qos-ma-oper:qos/nodes/node/policy-map/interface-table/interface/output/service-policy-names/service-policy-instance/statistics/class-stats/general-stats/transmit-packets"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "QoS_Policy_Map_general_stats6152d2ac_4dd68df70353_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "QoS_Policy_Map_general_stats6152d2ac_4dd68df70353_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-qos-ma-oper:2016-03-03"
+      }
+    ]
+  }
+}

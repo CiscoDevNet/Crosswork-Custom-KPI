@@ -1,0 +1,52 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "acl_icmpbc10ae13_febc83ac85cd",
+        "kpi_name": "acl-icmp",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "acl-icmp",
+        "details": "acl-icmp",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-ipv4-acl-oper:ipv4-acl-and-prefix-list/access-list-manager/accesses/access/access-list-sequences/access-list-sequence/is-icmp-off"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "acl_icmpbc10ae13_febc83ac85cd_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "acl_icmpbc10ae13_febc83ac85cd_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-ipv4-acl-oper:2015-11-09"
+      }
+    ]
+  }
+}

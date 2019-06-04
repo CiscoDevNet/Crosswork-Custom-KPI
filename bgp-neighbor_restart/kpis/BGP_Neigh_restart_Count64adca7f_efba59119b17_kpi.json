@@ -1,0 +1,52 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "BGP_Neigh_restart_Count64adca7f_efba59119b17",
+        "kpi_name": "BGP-Neigh-restart-Count",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "BGP-Neigh-restart-Count",
+        "details": "BGP-Neigh-restart-Count",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-ipv4-bgp-oper:bgp/instances/instance/instance-active/default-vrf/process-info/global/restart-count"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "BGP_Neigh_restart_Count64adca7f_efba59119b17_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "BGP_Neigh_restart_Count64adca7f_efba59119b17_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-ipv4-bgp-oper:2015-08-27"
+      }
+    ]
+  }
+}

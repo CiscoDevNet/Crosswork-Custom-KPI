@@ -1,0 +1,55 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "acl_source_port019ce726_fa9cd808713d",
+        "kpi_name": "acl-source-port",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "acl-source-port",
+        "details": "acl-source-port",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-ipv4-acl-oper:ipv4-acl-and-prefix-list/access-list-manager/accesses/access/access-list-sequences/access-list-sequence/source-port1"
+                  },
+                  {
+                    "path_id": "Cisco-IOS-XR-ipv4-acl-oper:ipv4-acl-and-prefix-list/access-list-manager/accesses/access/access-list-sequences/access-list-sequence/source-port2"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "acl_source_port019ce726_fa9cd808713d_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "acl_source_port019ce726_fa9cd808713d_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-ipv4-acl-oper:2015-11-09"
+      }
+    ]
+  }
+}
