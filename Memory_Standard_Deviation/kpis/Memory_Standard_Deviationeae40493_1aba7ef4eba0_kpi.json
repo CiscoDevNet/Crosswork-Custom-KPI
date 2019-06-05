@@ -1,0 +1,52 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "Memory_Standard_Deviationeae40493_1aba7ef4eba0",
+        "kpi_name": "Memory Standard Deviation",
+        "state": "complete",
+        "category": "User Created",
+        "summary": "Alerts on high memory deviations",
+        "details": "Alerts on high allocated memory deviations",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 5,
+                "min": 1,
+                "max": 30,
+                "increment": 1
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-nto-misc-oper:memory-summary/nodes/node/detail/allocated-memory"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "Memory_Standard_Deviationeae40493_1aba7ef4eba0_template.tick",
+              "script": ""
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "Memory_Standard_Deviationeae40493_1aba7ef4eba0_dashboard.json",
+              "label": "Default"
+            }
+          ]
+        },
+        "sensor_type": "YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-nto-misc-oper:2015-11-09"
+      }
+    ]
+  }
+}
