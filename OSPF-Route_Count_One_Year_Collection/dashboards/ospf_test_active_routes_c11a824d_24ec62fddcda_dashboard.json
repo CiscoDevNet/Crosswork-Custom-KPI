@@ -1,0 +1,452 @@
+{
+  "__inputs": [
+    {
+      "description": "",
+      "label": "robot_alertdb",
+      "name": "DS_ROBOT_ALERTDB",
+      "pluginId": "influxdb",
+      "pluginName": "InfluxDB",
+      "type": "datasource"
+    }
+  ],
+  "__requires": [
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "type": "grafana",
+      "version": "4.2.0"
+    },
+    {
+      "id": "graph",
+      "name": "Graph",
+      "type": "panel",
+      "version": ""
+    },
+    {
+      "id": "influxdb",
+      "name": "InfluxDB",
+      "type": "datasource",
+      "version": "1.0.0"
+    }
+  ],
+  "annotations": {
+    "enable": true,
+    "list": [
+      {
+        "datasource": "cwdb",
+        "enable": true,
+        "iconColor": "rgb(253, 7, 7)",
+        "limit": 100,
+        "name": "CRITICAL",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE $timeFilter AND Producer =~ /^$Router$/ AND id =~ /ospf_test_active_routes_c11a824d_24ec62fddcda/ AND level = 'CRITICAL'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      },
+      {
+        "datasource": "cwdb",
+        "enable": true,
+        "iconColor": "rgb(237, 149, 3)",
+        "limit": 100,
+        "name": "WARNING",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE $timeFilter AND Producer =~ /^$Router$/ AND id =~ /ospf_test_active_routes_c11a824d_24ec62fddcda/ AND level = 'WARNING'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      },
+      {
+        "datasource": "cwdb",
+        "enable": true,
+        "iconColor": "rgb(253, 7, 7)",
+        "limit": 100,
+        "name": "MAJOR",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE $timeFilter AND Producer =~ /^$Router$/ AND id =~ /ospf_test_active_routes_c11a824d_24ec62fddcda/ AND level = 'MAJOR'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      },
+      {
+        "datasource": "cwdb",
+        "enable": true,
+        "iconColor": "rgb(237, 149, 3)",
+        "limit": 100,
+        "name": "MINOR",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE $timeFilter AND Producer =~ /^$Router$/ AND id =~ /ospf_test_active_routes_c11a824d_24ec62fddcda/ AND level = 'MINOR'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      },
+      {
+        "datasource": "cwdb",
+        "enable": false,
+        "iconColor": "rgb(34, 191, 13)",
+        "limit": 100,
+        "name": "INFO",
+        "query": "SELECT * FROM \"rp30d_1\".\"alerts\" WHERE $timeFilter AND Producer =~ /^$Router$/ AND id =~ /ospf_test_active_routes_c11a824d_24ec62fddcda/ AND level = 'INFO'",
+        "tagsColumn": "Producer",
+        "textColumn": "msg",
+        "titleColumn": "id",
+        "type": "alert"
+      }
+    ]
+  },
+  "description": "",
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "hideControls": false,
+  "id": null,
+  "links": [],
+  "refresh": false,
+  "rows": [
+    {
+      "collapse": false,
+      "height": "350",
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "datasource": "robot_alertdb",
+          "decimals": 2,
+          "fill": 1,
+          "id": 1,
+          "legend": {
+            "alignAsTable": true,
+            "avg": true,
+            "current": true,
+            "hideEmpty": true,
+            "hideZero": false,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "sortDesc": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 2,
+          "links": [],
+          "nullPointMode": "null",
+          "percentage": false,
+          "pointradius": 1,
+          "points": true,
+          "renderer": "flot",
+          "repeat": null,
+          "span": 12,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "$col on [[tag_vrf-name]] / [[tag_af-name]] / [[tag_saf-name]] / [[tag_route-table-name]] / [[tag_as]]",
+              "dsType": "influxdb",
+              "groupBy": [
+                {
+                  "params": [
+                    "$__interval"
+                  ],
+                  "type": "time"
+                },
+                {
+                  "params": [
+                    "null"
+                  ],
+                  "type": "fill"
+                }
+              ],
+              "hide": false,
+              "policy": "default",
+              "query": "SELECT /^$KpiFields$/ FROM $RP.\"downsampled_routes\" GROUP BY *",
+              "rawQuery": true,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  }
+                ]
+              ],
+              "tags": []
+            },
+            {
+              "alias": "$Router: $col on [[tag_vrf-name]] / [[tag_af-name]] / [[tag_saf-name]] / [[tag_as]]",
+              "dsType": "influxdb",
+              "groupBy": [],
+              "hide": true,
+              "measurement": "downsampled_routes",
+              "policy": "a_year",
+              "query": "SELECT derivative(/^$KpiFields$/, 1m) FROM $RP.\"downsampled_routes\" WHERE \"Producer\" =~ /^$Router$/  AND \"vrf-name\" =~ /^$vrfname$/ AND \"af-name\" =~ /^$afname$/ AND \"saf-name\" =~ /^$safname$/ AND \"as\" =~ /^$as$/ AND $timeFilter GROUP BY *",
+              "rawQuery": true,
+              "refId": "B",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [
+                      "5m"
+                    ],
+                    "type": "derivative"
+                  }
+                ]
+              ],
+              "tags": []
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeShift": null,
+          "title": "$Router - $KpiFields ",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "transparent": false,
+          "type": "graph",
+          "xaxis": {
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": [
+              "total"
+            ]
+          },
+          "yaxes": [
+            {
+              "format": "short",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "none",
+              "label": "",
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": true
+            }
+          ]
+        }
+      ],
+      "repeat": "Router",
+      "repeatIteration": null,
+      "repeatRowId": null,
+      "showTitle": false,
+      "title": "Dashboard Row",
+      "titleSize": "h6"
+    }
+  ],
+  "schemaVersion": 14,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": true,
+        "name": "Router",
+        "options": [],
+        "query": "Show Tag Values from $RP.\"downsampled_routes\" WITH Key = \"Producer\"",
+        "refresh": 1,
+        "regex": "",
+        "sort": 1,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "vrfname",
+        "options": [],
+        "query": "SHOW TAG VALUES  FROM $RP.\"downsampled_routes\" WITH KEY= \"vrf-name\"  where Producer =~ /^$Router$/",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "afname",
+        "options": [],
+        "query": "SHOW TAG VALUES  FROM $RP.\"downsampled_routes\" WITH KEY= \"af-name\"  where Producer =~ /^$Router$/",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "safname",
+        "options": [],
+        "query": "SHOW TAG VALUES  FROM $RP.\"downsampled_routes\" WITH KEY= \"saf-name\"  where Producer =~ /^$Router$/",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {},
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": true,
+        "label": null,
+        "multi": true,
+        "name": "as",
+        "options": [],
+        "query": "SHOW TAG VALUES  FROM $RP.\"downsampled_routes\" WITH KEY= \"as\"  where Producer =~ /^$Router$/",
+        "refresh": 1,
+        "regex": "",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": [
+            "active-routes-count"
+          ],
+          "value": [
+            "active-routes-count"
+          ]
+        },
+        "description": null,
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Sensor",
+        "multi": true,
+        "name": "KpiFields",
+        "options": [
+          {
+            "selected": false,
+            "text": "active-routes-count",
+            "value": "active-routes-count"
+          }
+        ],
+        "query": "active-routes-count",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "a_year",
+          "value": "a_year"
+        },
+        "datasource": "robot_alertdb",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Retention",
+        "multi": false,
+        "name": "RP",
+        "options": [],
+        "query": "show retention policies",
+        "refresh": 1,
+        "regex": "a_year",
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15d",
+    "to": "now"
+  },
+  "timepicker": {
+    "refresh_intervals": [
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ],
+    "time_options": [
+      "5m",
+      "15m",
+      "1h",
+      "6h",
+      "12h",
+      "24h",
+      "2d",
+      "7d",
+      "30d"
+    ]
+  },
+  "timezone": "browser",
+  "title": "ospf_test_active_routes_c11a824d_24ec62fddcda",
+  "version": 10
+}
