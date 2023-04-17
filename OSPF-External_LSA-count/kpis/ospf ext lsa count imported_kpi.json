@@ -1,0 +1,70 @@
+{
+  "kpis": {
+    "kpi": [
+      {
+        "kpi_id": "ospf_ext_lsa_count_imported",
+        "kpi_name": "ospf_test_ext_lsa4",
+        "state": "complete",
+        "category": "User Defined",
+        "summary": "lsa external std dev count and router lsa std dev",
+	"details": "Combined KPI of 2 sensor paths",
+        "sensor_groups": {
+          "sensor_group": [
+            {
+              "cadence": {
+                "default": 300,
+                "min": 10,
+                "max": 1800,
+                "increment": 10
+              },
+              "sensor_paths": {
+                "sensor_path": [
+                  {
+                    "path_id": "Cisco-IOS-XR-ipv4-ospf-oper:ospf/processes/process/default-vrf/ospf-summary/num-as-external-lsas"
+                  },
+		  {
+		    "path_id": "Cisco-IOS-XR-ipv4-ospf-oper:ospf/processes/process/default-vrf/ospf-summary/num-router-lsas"
+		  }
+                ]
+              }
+            }
+          ]
+        },
+        "scripts": {
+          "script": [
+            {
+              "script_id": "ospf_Ext_lsaCount_test_template.tick",
+              "script": "",
+              "template": "stream-stddev-activate-master-template"
+            },
+	    {
+              "script_id": "ospf_Router_lsaCount_test_template.tick",
+              "script": "",
+              "template": "stream-stddev-activate-master-template"
+            }
+          ]
+        },
+        "dashboards": {
+          "dashboard": [
+            {
+              "type": "jsonfile",
+              "value": "ospf-Ext-lsacount-test-summary.json",
+              "label": "Summary"
+            },
+	    {
+              "type": "jsonfile",
+              "value": "ospf-Ext-lsacount-test-raw.json",
+              "label": "Raw"
+            }
+          ]
+        },
+        "sensor_type": "GNMI,YANG_MDT",
+        "module_and_revision": "Cisco-IOS-XR-ipv4-ospf-oper:2015-11-09",
+        "created_by": "admin",
+        "creation_date": 1654260826,
+        "last_updated_by": "admin",
+        "last_updation_date": 1654260826
+      }
+    ]
+  }
+}
